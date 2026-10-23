@@ -1,7 +1,6 @@
 # Site MetaFit em Astro
 
-Cópia do site metafit.cc reconstruída em Astro 5 + Vue 3, publicada no Cloudflare Pages
-(projeto `metafit-astro`, endereço de teste https://astro.metafit.cc, marcada como não indexável).
+Site oficial metafit.cc, reconstruído em Astro 5 + Vue 3 e publicado no Cloudflare Pages (projeto `metafit-astro`).
 Este repositório guardava antes um teste de hospedagem do build Nuxt (scripts de espelho); ficou no histórico do git.
 
 ## Rodar
@@ -21,6 +20,6 @@ Este repositório guardava antes um teste de hospedagem do build Nuxt (scripts d
 - `src/pages/`: `index.astro` (home), `teste-gratis.astro`, `404.astro`.
 - `src/components/sections/`: as seções. `Hero.astro` é HTML puro (com o vídeo de fumaça em JS simples); as seções com interação (Cartas, Pay, Kanban, Whats, Perdas, Depoimentos, Planos, Faq) são ilhas Vue carregadas só quando aparecem na tela (`client:visible`); Menu, Apps, Final e Rodapé são Vue renderizado no build, sem JavaScript no navegador.
 - `src/styles/`: `main.sass` e `variables.sass` (mesmas regras do site atual: Sass indentado, variáveis CSS, uma única media query).
-- `public/`: imagens do topo, fontes (woff2), ícones, `robots.txt` (bloqueia tudo: é cópia) e `_headers` (noindex + cache longo).
+- `public/`: imagens do topo, fontes (woff2), ícones, `robots.txt`, `sitemap.xml` e `_headers` (cache longo). Redirecionamentos de www, astro.metafit.cc e pages.dev para o oficial ficam no Cloudflare (regras da zona e Bulk Redirects), não aqui.
 
-Para virar o site oficial: tirar o `X-Robots-Tag: noindex` do `_headers`, liberar o `robots.txt`, apontar o domínio metafit.cc para o projeto no Cloudflare Pages e manter o UnicPages como reserva até confirmar.
+Reserva: o site antigo (Nuxt, UnicPages) continua publicado em https://site-o25uz4.unic.page/.

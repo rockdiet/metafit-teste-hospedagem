@@ -1,5 +1,5 @@
-# Cópia de teste do site: quem impede a indexação é o cabeçalho X-Robots-Tag: noindex (arquivo _headers).
-# O rastreio fica liberado porque os robôs de preview de link (Meta/Instagram/Facebook, X, LinkedIn, Telegram) respeitam o robots.txt
-# e, bloqueados aqui, deixavam de montar o cartão com imagem quando o link era compartilhado.
 User-agent: *
 Allow: /
+Disallow: /teste-gratis
+
+Sitemap: https://metafit.cc/sitemap.xml
