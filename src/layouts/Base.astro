@@ -1,0 +1,73 @@
+---
+// Esqueleto de toda página: cabeçalho HTML (SEO, fontes, ícones), GTM com carga preguiçosa e a medição de cliques.
+// O conteúdo de cada página entra no <slot />.
+import '../styles/main.sass'
+
+interface Props {
+  titulo: string
+  descricao?: string
+  caminho?: string
+  indexar?: boolean
+  preload?: { href: string; imagesrcset?: string; imagesizes?: string }[]
+}
+
+const { titulo, descricao, caminho = '/', indexar = true, preload } = Astro.props
+const canonico = 'https://metafit.cc' + caminho
+// Imagem do preview de link (WhatsApp, Instagram, Facebook, X): 1200x630, tamanho que o Meta pede para mostrar o cartão grande
+// (servida pelo endereço pages.dev do mesmo projeto: o robô do Meta guardou em cache o robots.txt antigo de astro.metafit.cc, que bloqueava tudo)
+const imagem = 'https://metafit-astro.pages.dev/images/meta-1200x630.jpg'
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    {descricao && <meta name="description" content={descricao} />}
+    {!indexar && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonico} />
+    <meta name="theme-color" content="#D1161F" />
+    <link rel="icon" href="/images/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonico} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="MetaFit" />
+    <meta property="og:title" content={titulo} />
+    {descricao && <meta property="og:description" content={descricao} />}
+    <meta property="og:image" content={imagem} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="MetaFit" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titulo} />
+    {descricao && <meta name="twitter:description" content={descricao} />}
+    <meta name="twitter:image" content={imagem} />
+
+    {/* Quem abrir por http:// (sem cadeado) vai direto para o https://, mantendo caminho e UTMs */}
+    <script is:inline>if(location.protocol==='http:'&&/metafit\.cc$/.test(location.hostname))location.replace('https://'+location.host+location.pathname+location.search+location.hash);</script>
+
+    {/* Fontes hospedadas aqui mesmo (pasta public/fontes), declaradas inline e pré-carregadas junto com o HTML: nada de Google Fonts no caminho da primeira pintura */}
+    <link rel="preconnect" href="https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontes/plus-jakarta-sans-800.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontes/figtree-400.woff2" />
+    {preload && preload.map((p) => <link rel="preload" as="image" href={p.href} imagesrcset={p.imagesrcset} imagesizes={p.imagesizes} fetchpriority="high" />)}
+    <style is:inline>@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(/fontes/plus-jakarta-sans-800.woff2) format('woff2')}@font-face{font-family:'Figtree';font-style:normal;font-weight:400;font-display:swap;src:url(/fontes/figtree-400.woff2) format('woff2')}</style>
+
+    {/* Google Tag Manager GTM-T75MG4TK, contêiner da MetaFit na conta ferramentasmetafit: Analytics, Clarity, Pixel e eventos ficam configurados lá dentro.
+        Carga preguiçosa: entra no primeiro toque, rolagem ou tecla, ou então 1,5 s depois da página terminar de abrir,
+        mas nunca antes de a primeira tela ter sido pintada (maior pintura, LCP) há pelo menos 1 s. Assim os rastreadores não entram
+        no meio do desenho do topo, o que derrubava a nota do PageSpeed no celular. Navegador sem medição de LCP (Safari) ou aba
+        em segundo plano: vale só o 1,5 s depois de abrir; e, por segurança, nunca espera mais que 8 s depois de abrir. */}
+    <script is:inline>(function(w,d){var feito=false,pronto=false,prazo=0,ultima=0,agenda=0,ev=['scroll','pointerdown','touchstart','keydown','mousemove'],mede=false;try{mede=PerformanceObserver.supportedEntryTypes.indexOf('largest-contentful-paint')>-1&&d.visibilityState==='visible'}catch(e){}function carregar(i){w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName('script')[0],j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f)}function gtm(){if(feito)return;feito=true;clearTimeout(agenda);ev.forEach(function(e){w.removeEventListener(e,gtm)});['GTM-T75MG4TK'].forEach(carregar)}function marcar(){if(feito||!pronto)return;clearTimeout(agenda);var quando=mede&&!ultima?prazo+6500:Math.max(prazo,ultima+1000);agenda=setTimeout(gtm,Math.max(0,quando-performance.now()))}function carregou(){pronto=true;prazo=performance.now()+1500;marcar()}ev.forEach(function(e){w.addEventListener(e,gtm,{passive:true,once:true})});if(mede){try{new PerformanceObserver(function(){ultima=performance.now();marcar()}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){mede=false}}if(d.readyState==='complete')carregou();else w.addEventListener('load',carregou)})(window,document);</script>
+  </head>
+  <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T75MG4TK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <slot />
+    <script>
+      import '../scripts/rastreio'
+    </script>
+  </body>
+</html>

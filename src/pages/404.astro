@@ -1,0 +1,107 @@
+---
+// Página de erro do site: aparece quando alguém abre um endereço que não existe (link digitado errado, link antigo, página apagada)
+import Base from '../layouts/Base.astro'
+---
+
+<Base titulo="Página não encontrada | MetaFit" caminho="/404" indexar={false}>
+  <main class="erro">
+    <div class="cena" aria-hidden="true">
+      <span class="brilho"></span>
+    </div>
+    <a class="marca" href="/" aria-label="MetaFit, página inicial">
+      <img src="/images/logo.svg" alt="MetaFit" width="168" height="49" />
+    </a>
+    <span class="codigo">404</span>
+    <h1>Essa página não existe</h1>
+    <p>O link pode estar errado ou a página mudou de lugar. Volte para o início e conheça a MetaFit.</p>
+    <div class="acoes">
+      <a class="botao" href="/">Voltar para o início</a>
+      <a class="botao vidro" href="/teste-gratis">Testar grátis por 10 dias</a>
+    </div>
+  </main>
+</Base>
+
+<style lang="sass">
+.erro
+  display: flex
+  position: relative
+  width: 100%
+  min-height: 100dvh
+  padding: 60px 24px 60px 24px
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  gap: 18px
+  overflow: hidden
+  isolation: isolate
+  text-align: center
+  background: var(--cor-fundo)
+
+  .cena
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    z-index: -1
+    width: 100%
+    height: 100%
+    pointer-events: none
+
+    .brilho
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: radial-gradient(ellipse 60% 50% at 50% 30%, var(--cor-fumaca), transparent 70%)
+
+  .marca
+    display: block
+    margin: 0 0 30px 0
+
+    img
+      display: block
+      width: 150px
+      height: auto
+
+  .codigo
+    font-family: var(--bold)
+    font-size: var(--f8)
+    color: var(--cor-destaque-viva)
+    line-height: 1
+
+  h1
+    font-family: var(--bold)
+    font-size: var(--f6)
+    color: var(--cor-texto)
+    line-height: 1.15
+
+  p
+    max-width: 460px
+    font-family: var(--light)
+    font-size: var(--f2)
+    color: var(--cor-suave)
+    line-height: 1.6
+
+  .acoes
+    display: flex
+    margin: 12px 0 0 0
+    flex-wrap: wrap
+    justify-content: center
+    gap: 12px
+
+@media screen and (max-width: 1000px)
+  .erro
+    padding: 40px 20px 40px 20px
+
+    h1
+      font-size: var(--f5)
+
+    .acoes
+      width: 100%
+      flex-direction: column
+
+      .botao
+        width: 100%
+</style>

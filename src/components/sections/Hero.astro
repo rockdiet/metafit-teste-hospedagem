@@ -1,0 +1,283 @@
+---
+// Topo do site: título, chamada, botões e a cena de fundo (brilho, atleta e fumaça em vídeo).
+// Tudo aqui é HTML pronto; o único JavaScript é o da fumaça (script no fim), sem framework nenhum.
+import { atleta, atletaSrcset, atletaSizes, nome, nomeSrcset, nomeSizes } from './hero-imagens'
+
+const atletaReserva = 'https://landipage-metafit.vercel.app/personagem.png'
+---
+
+<section class="hero" id="topo">
+  <div class="cena" aria-hidden="true">
+    <span class="brilho"></span>
+    <video class="fumaca" muted loop playsinline autoplay preload="none" aria-hidden="true"></video>
+    <span class="veu"></span>
+    <span class="base"></span>
+    <span class="grao"></span>
+  </div>
+  <div class="fundo" aria-hidden="true">
+    <img class="nome" src={nome} srcset={nomeSrcset} sizes={nomeSizes} alt="" width="1800" height="689" fetchpriority="high" />
+    <img class="atleta" src={atleta} srcset={atletaSrcset} sizes={atletaSizes} data-reserva={atletaReserva} alt="" width="622" height="1200" fetchpriority="high" onerror="if(this.dataset.reserva){this.removeAttribute('srcset');this.src=this.dataset.reserva;this.removeAttribute('data-reserva')}" />
+  </div>
+  <div class="topo">
+    <h1>A plataforma que organiza sua <span class="realce">consultoria online</span></h1>
+    <p>Cobrança automática, formulários, controle de alunos, treino, dieta, controle financeiro e muito mais.</p>
+    <p class="reforco">Atenda 100 alunos com a mesma facilidade que atende 10. Tchau Excel, Google Drive e PDFs soltos.</p>
+    <div class="acoes">
+      <a class="botao" href="/teste-gratis">Teste grátis</a>
+      <span class="nota celular">10 dias grátis, cancele quando quiser.</span>
+      <a class="botao vidro" href="#planos">Ver planos</a>
+    </div>
+    <span class="nota computador">10 dias grátis, cancele quando quiser.</span>
+  </div>
+</section>
+
+<style lang="sass">
+.hero
+  display: flex
+  position: relative
+  width: 100%
+  min-height: 100dvh
+  padding: 150px 24px 56px 24px
+  flex-direction: column
+  align-items: center
+  justify-content: flex-end
+  gap: 48px
+  overflow: hidden
+  isolation: isolate
+  background: var(--cor-fundo)
+
+  // Cena de fundo: vídeo de fumaça com o raio neon, véus escuros e grão, nas mesmas medidas da página experimental
+  .cena
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+    pointer-events: none
+
+    .brilho
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: radial-gradient(ellipse 70% 55% at 55% 30%, var(--cor-fumaca), transparent 70%)
+      transition: opacity 1.2s
+
+    .veu
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.34) 0%, rgba(24, 0, 0, 0.22) 32%, rgba(0, 0, 0, 0.4) 58%, var(--cor-preto) 100%), radial-gradient(70% 48% at 50% 35%, rgba(209, 22, 31, 0.22), transparent 62%), radial-gradient(70% 55% at 16% 66%, rgba(120, 0, 0, 0.26), transparent 58%)
+
+    .base
+      display: block
+      position: absolute
+      top: 44%
+      left: 0
+      width: 100%
+      height: 56%
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.12) 18%, rgba(0, 0, 0, 0.44) 46%, rgba(0, 0, 0, 0.82) 76%, var(--cor-preto) 100%), radial-gradient(62% 48% at 50% 30%, rgba(0, 0, 0, 0.34), transparent 76%)
+
+    .fumaca
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: 50% 50%
+      opacity: 0
+      transition: opacity 1.2s
+      pointer-events: none
+
+      &.visivel
+        opacity: 0.64
+
+    .grao
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")
+      background-size: 160px 160px
+      opacity: 0.06
+
+  &.comtela
+    .cena
+      .brilho
+        opacity: 0
+
+  .fundo
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+    pointer-events: none
+
+    .nome
+      display: block
+      position: absolute
+      top: calc(84px + 30dvh)
+      left: 50%
+      width: min(866px, 84vw)
+      max-width: none
+      height: auto
+      transform: translate(-50%, -50%)
+      opacity: 0.34
+      user-select: none
+
+    .atleta
+      display: block
+      position: relative
+      width: auto
+      max-width: none
+      height: 66dvh
+      margin: 84px auto 0 auto
+      object-fit: contain
+      -webkit-mask-image: linear-gradient(180deg, black 52%, transparent 96%)
+      mask-image: linear-gradient(180deg, black 52%, transparent 96%)
+
+  .topo
+    display: flex
+    position: relative
+    z-index: 1
+    width: 100%
+    max-width: 900px
+    flex-direction: column
+    align-items: center
+    gap: 20px
+    text-align: center
+
+    h1
+      font-family: var(--bold)
+      font-size: var(--f8)
+      color: var(--cor-texto)
+      line-height: 1.04
+      text-shadow: 0 6px 40px rgba(0, 0, 0, 0.75)
+
+    p
+      max-width: 680px
+      font-family: var(--light)
+      font-size: var(--f3)
+      color: var(--cor-suave)
+      line-height: 1.6
+
+    .reforco
+      margin: -8px 0 0 0
+      font-family: var(--bold)
+      font-size: var(--f2)
+      color: var(--cor-texto)
+
+    // Ver planos em vidro translúcido, mais leve que o Teste grátis (desktop e celular)
+    .vidro
+      backdrop-filter: blur(10px)
+      -webkit-backdrop-filter: blur(10px)
+
+    .acoes
+      display: flex
+      margin: 6px 0 0 0
+      flex-wrap: wrap
+      align-items: center
+      justify-content: center
+      gap: 14px
+
+    .nota
+      font-family: var(--light)
+      font-size: var(--f1)
+      color: var(--cor-fraca)
+
+      // No computador a legenda fica embaixo dos dois botões; no celular, colada no Teste grátis
+      &.celular
+        display: none
+
+@media screen and (max-width: 1000px)
+  .hero
+    padding: 330px 20px 40px 20px
+    gap: 36px
+
+    .fundo
+      .nome
+        top: 290px
+        left: calc(50% - 26px)
+        width: 153vw
+
+      .atleta
+        height: 470px
+        margin: 62px auto 0 auto
+
+    .topo
+      gap: 18px
+
+      .reforco
+        margin: -4px 0 0 0
+
+      .acoes
+        width: 100%
+        flex-direction: column
+        gap: 10px
+
+        .nota.celular
+          display: block
+          margin: 0 0 6px 0
+
+        .botao
+          width: 100%
+
+      .nota.computador
+        display: none
+</style>
+
+<script>
+  // Fumaça vermelha com o raio neon: o mesmo vídeo da página experimental, comprimido (420 KB no computador, 205 KB no celular),
+  // hospedado na biblioteca de arquivos da UnicPages. Só começa a baixar depois que a página terminou de carregar (ou no primeiro
+  // toque, rolagem ou mouse), para não disputar banda com texto, fontes e a imagem do atleta. Se o navegador não tocar MP4 ou o
+  // arquivo falhar, fica só o brilho estático do hero.
+  const hero = document.querySelector('.hero')
+  const el = hero?.querySelector('video.fumaca') as HTMLVideoElement | null
+  const fontes = {
+    desktop: 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/videos/odpplhu4buls7h9e-fumaca-desktop.mp4',
+    celular: 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/videos/2nt06132pguok0mp-fumaca-celular.mp4'
+  }
+  const conexao = (navigator as any).connection
+  const pode = hero && el
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    && !(conexao && (conexao.saveData || /2g|3g/.test(conexao.effectiveType || '')))
+    && el.canPlayType('video/mp4; codecs="avc1.4D401F"')
+  if (pode && hero && el) {
+    const tocar = () => { el.muted = true; const p = el.play(); if (p && p.catch) p.catch(() => {}) }
+    el.addEventListener('playing', () => { el.classList.add('visivel'); hero.classList.add('comtela') })
+    el.addEventListener('error', () => { el.classList.remove('visivel'); hero.classList.remove('comtela') })
+    // Pausa quando o hero sai da tela (economiza bateria) e retoma quando volta
+    new IntersectionObserver((entradas) => { if (entradas[0].isIntersecting) tocar(); else el.pause() }).observe(el)
+    const sinais = ['pointerdown', 'pointermove', 'touchstart', 'scroll', 'keydown']
+    let comecou = false
+    let espera = 0
+    const comecar = () => {
+      if (comecou) return
+      comecou = true
+      clearTimeout(espera)
+      sinais.forEach((nome) => window.removeEventListener(nome, comecar))
+      el.src = window.matchMedia('(max-width: 1000px)').matches ? fontes.celular : fontes.desktop
+      el.load()
+      tocar()
+    }
+    sinais.forEach((nome) => window.addEventListener(nome, comecar, { passive: true, once: true }))
+    if (document.readyState === 'complete') espera = window.setTimeout(comecar, 8000)
+    else window.addEventListener('load', () => { espera = window.setTimeout(comecar, 8000) }, { once: true })
+  }
+</script>

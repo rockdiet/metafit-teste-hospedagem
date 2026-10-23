@@ -1,0 +1,132 @@
+@use './variables.sass'
+
+*, *::before, *::after
+  box-sizing: border-box
+  margin: 0 0 0 0
+  padding: 0 0 0 0
+
+html
+  scroll-behavior: smooth
+  background: var(--cor-fundo)
+
+body
+  overflow-x: hidden
+  font-family: var(--light)
+  font-size: var(--f2)
+  color: var(--cor-texto)
+  background: var(--cor-fundo)
+  -webkit-font-smoothing: antialiased
+
+a
+  color: inherit
+  text-decoration: none
+
+img
+  display: block
+  max-width: 100%
+
+button
+  font-family: inherit
+  border: none
+  background: none
+  cursor: pointer
+
+strong
+  font-family: var(--bold)
+
+// Botão padrão do site (vermelho); variações: claro e vidro
+.botao
+  display: inline-flex
+  min-height: 50px
+  padding: 12px 28px 12px 28px
+  align-items: center
+  justify-content: center
+  gap: 8px
+  font-family: var(--bold)
+  font-size: var(--f2)
+  color: var(--cor-branco)
+  text-align: center
+  background: linear-gradient(180deg, var(--cor-destaque-viva), var(--cor-destaque))
+  border-radius: var(--raio-medio) var(--raio-medio) var(--raio-medio) var(--raio-medio)
+  box-shadow: 0 10px 30px rgba(209, 22, 31, 0.35)
+  transition: all 0.3s
+
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 14px 40px rgba(209, 22, 31, 0.55)
+
+  &:focus-visible
+    outline: 2px solid var(--cor-branco)
+    outline-offset: 3px
+
+  &.claro
+    color: var(--cor-escuro)
+    background: var(--cor-claro)
+    box-shadow: none
+
+    &:hover
+      background: var(--cor-branco)
+
+  &.vidro
+    color: var(--cor-texto)
+    background: var(--cor-vidro-forte)
+    border: 1px solid var(--cor-linha-forte)
+    box-shadow: none
+
+    &:hover
+      border: 1px solid var(--cor-linha-destaque)
+
+// Etiqueta acima dos títulos
+.selo
+  display: inline-flex
+  align-items: center
+  gap: 10px
+  font-family: var(--bold)
+  font-size: var(--f0)
+  color: var(--cor-destaque-viva)
+  text-transform: uppercase
+
+  &::before
+    content: ''
+    width: 22px
+    height: 2px
+    background: var(--cor-destaque)
+
+.realce
+  color: var(--cor-destaque-viva)
+
+// Cabeçalho centralizado das seções
+.cabecalho
+  display: flex
+  width: 100%
+  max-width: 780px
+  flex-direction: column
+  align-items: center
+  gap: 18px
+  text-align: center
+
+  h2
+    font-family: var(--bold)
+    font-size: var(--f7)
+    color: var(--cor-texto)
+    line-height: 1.08
+
+  p
+    max-width: 620px
+    font-family: var(--light)
+    font-size: var(--f3)
+    color: var(--cor-suave)
+    line-height: 1.6
+
+// Cartão de vidro
+.cartao
+  background: linear-gradient(160deg, var(--cor-vidro-forte), var(--cor-vidro))
+  border: 1px solid var(--cor-linha)
+  border-radius: var(--raio-grande) var(--raio-grande) var(--raio-grande) var(--raio-grande)
+
+@media (prefers-reduced-motion: reduce)
+  *
+    animation-duration: 0.01ms
+    animation-iteration-count: 1
+    transition-duration: 0.01ms
+    scroll-behavior: auto

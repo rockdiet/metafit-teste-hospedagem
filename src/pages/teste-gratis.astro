@@ -1,0 +1,9 @@
+---
+// Página de cadastro do teste grátis: o formulário é uma ilha Vue (valida os campos e avisa o GTM)
+import Base from '../layouts/Base.astro'
+import TesteGratis from '../components/TesteGratis.vue'
+---
+
+<Base titulo="Teste grátis por 10 dias | MetaFit" caminho="/teste-gratis" indexar={false}>
+  <TesteGratis client:load />
+</Base>

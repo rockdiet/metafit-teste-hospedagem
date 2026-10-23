@@ -1,0 +1,60 @@
+---
+// Página inicial. Dobras sem interação viram HTML puro; as que animam ou reagem ao visitante são ilhas (Vue)
+// que só carregam JavaScript quando chegam perto da tela (client:visible).
+import Base from '../layouts/Base.astro'
+import Menu from '../components/sections/Menu.vue'
+import Hero from '../components/sections/Hero.astro'
+import Apps from '../components/sections/Apps.vue'
+import Cartas from '../components/sections/Cartas.vue'
+import Pay from '../components/sections/Pay.vue'
+import Kanban from '../components/sections/Kanban.vue'
+import Whats from '../components/sections/Whats.vue'
+import Perdas from '../components/sections/Perdas.vue'
+import Depoimentos from '../components/sections/Depoimentos.vue'
+import Planos from '../components/sections/Planos.vue'
+import Faq from '../components/sections/Faq.vue'
+import Final from '../components/sections/Final.vue'
+import Rodape from '../components/sections/Rodape.vue'
+import { atleta, atletaSrcset, atletaSizes, nome, nomeSrcset, nomeSizes } from '../components/sections/hero-imagens'
+---
+
+<Base
+  titulo="MetaFit: sua consultoria online organizada e faturando mais"
+  descricao="Treinos, dietas, gestão de alunos e cobrança recorrente em uma única plataforma para personals, treinadores e nutricionistas. Teste grátis por 10 dias."
+  preload={[{ href: atleta, imagesrcset: atletaSrcset, imagesizes: atletaSizes }, { href: nome, imagesrcset: nomeSrcset, imagesizes: nomeSizes }]}
+>
+  <div class="pagina">
+    <Menu />
+    <main>
+      <Hero />
+      <Apps />
+      <Cartas client:visible />
+      <Pay client:visible />
+      <Kanban client:visible />
+      <Whats client:visible />
+      <Perdas client:visible />
+      <Depoimentos client:visible />
+      <Planos client:visible />
+      <Faq client:visible />
+      <Final />
+    </main>
+    <Rodape />
+  </div>
+</Base>
+
+<style is:global lang="sass">
+.pagina
+  display: flex
+  width: 100%
+  flex-direction: column
+
+  main
+    display: flex
+    width: 100%
+    flex-direction: column
+
+    // Seções abaixo do topo: o navegador só desenha (e roda as animações) quando elas chegam perto da tela
+    > section:not(:first-child), > astro-island > section
+      content-visibility: auto
+      contain-intrinsic-size: auto 900px
+</style>
