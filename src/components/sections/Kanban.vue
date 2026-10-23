@@ -52,7 +52,7 @@ import Icone from '../Icone.vue'
 // Tela real do Kanban (kanban-board.html do projeto Metafit Desktop no Claude Design), com mais alunos e a Camila Reis
 // sendo arrastada de "Plano em criação" para "Plano criado". Vídeos MP4 leves: 170 KB (computador) e 160 KB (celular, três etapas)
 // Endereço da CDN (Cloudflare) da biblioteca: entrega os arquivos de um servidor perto do visitante, bem mais rápido no Brasil
-const cdn = 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/'
+const cdn = '/'
 // Juliana Costa vai para a 3ª posição de Plano criado e Renan Costa vai para cima da Bianca Torres; depois os dois voltam.
 // Rápido, com brilho vermelho e o card arrastado sempre por cima de tudo (loop de 3,8 s)
 const videoComputador = cdn + 'videos/xymhhfnjfly5j8mo-kanban3-desktop.mp4'

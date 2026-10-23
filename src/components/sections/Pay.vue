@@ -85,9 +85,9 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Icone from '../Icone.vue'
 
-// Telas reais do Financeiro (projeto Metafit Desktop no Claude Design), em WebP leve na biblioteca da UnicPages:
+// Telas reais do Financeiro (projeto Metafit Desktop no Claude Design), em WebP leve, servidas pelo próprio site (public/imagens):
 // celular = "Financeiro - Imagem vertical (site)" na proporção 9:16; computador = página financeiro.html inteira
-const cdn = 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/imagens/'
+const cdn = '/imagens/'
 const telaCelular = cdn + 'ighi5rz5oj0q2bhb-claro-financeiro-celular.webp'
 const telaComputador = cdn + 'n4j9ck7zhgwx58t5-claro-financeiro-desktop.webp'
 // Três alunos comprando produtos diferentes: a venda nova entra ao mesmo tempo em que a anterior sai

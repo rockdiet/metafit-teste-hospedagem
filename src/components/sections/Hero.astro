@@ -3,7 +3,7 @@
 // Tudo aqui é HTML pronto; o único JavaScript é o da fumaça (script no fim), sem framework nenhum.
 import { atleta, atletaSrcset, atletaSizes, nome, nomeSrcset, nomeSizes } from './hero-imagens'
 
-const atletaReserva = 'https://landipage-metafit.vercel.app/personagem.png'
+const atletaReserva = '/imagens/reserva/personagem.png'
 ---
 
 <section class="hero" id="topo">
@@ -244,14 +244,14 @@ const atletaReserva = 'https://landipage-metafit.vercel.app/personagem.png'
 
 <script>
   // Fumaça vermelha com o raio neon: o mesmo vídeo da página experimental, comprimido (420 KB no computador, 205 KB no celular),
-  // hospedado na biblioteca de arquivos da UnicPages. Só começa a baixar depois que a página terminou de carregar (ou no primeiro
+  // servido pelo próprio site (pasta public/videos). Só começa a baixar depois que a página terminou de carregar (ou no primeiro
   // toque, rolagem ou mouse), para não disputar banda com texto, fontes e a imagem do atleta. Se o navegador não tocar MP4 ou o
   // arquivo falhar, fica só o brilho estático do hero.
   const hero = document.querySelector('.hero')
   const el = hero?.querySelector('video.fumaca') as HTMLVideoElement | null
   const fontes = {
-    desktop: 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/videos/odpplhu4buls7h9e-fumaca-desktop.mp4',
-    celular: 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/videos/2nt06132pguok0mp-fumaca-celular.mp4'
+    desktop: '/videos/odpplhu4buls7h9e-fumaca-desktop.mp4',
+    celular: '/videos/2nt06132pguok0mp-fumaca-celular.mp4'
   }
   const conexao = (navigator as any).connection
   const pode = hero && el

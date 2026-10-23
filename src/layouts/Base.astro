@@ -14,8 +14,7 @@ interface Props {
 const { titulo, descricao, caminho = '/', indexar = true, preload } = Astro.props
 const canonico = 'https://metafit.cc' + caminho
 // Imagem do preview de link (WhatsApp, Instagram, Facebook, X): 1200x630, tamanho que o Meta pede para mostrar o cartão grande
-// (servida pelo endereço pages.dev do mesmo projeto: o robô do Meta guardou em cache o robots.txt antigo de astro.metafit.cc, que bloqueava tudo)
-const imagem = 'https://metafit-astro.pages.dev/images/meta-1200x630.jpg'
+const imagem = 'https://astro.metafit.cc/images/meta-1200x630.jpg'
 ---
 
 <!doctype html>
@@ -50,7 +49,6 @@ const imagem = 'https://metafit-astro.pages.dev/images/meta-1200x630.jpg'
     <script is:inline>if(location.protocol==='http:'&&/metafit\.cc$/.test(location.hostname))location.replace('https://'+location.host+location.pathname+location.search+location.hash);</script>
 
     {/* Fontes hospedadas aqui mesmo (pasta public/fontes), declaradas inline e pré-carregadas junto com o HTML: nada de Google Fonts no caminho da primeira pintura */}
-    <link rel="preconnect" href="https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontes/plus-jakarta-sans-800.woff2" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href="/fontes/figtree-400.woff2" />
     {preload && preload.map((p) => <link rel="preload" as="image" href={p.href} imagesrcset={p.imagesrcset} imagesizes={p.imagesizes} fetchpriority="high" />)}

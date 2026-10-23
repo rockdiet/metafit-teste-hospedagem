@@ -21,7 +21,7 @@
 <script setup>
 // Caminho como variável: o Vite não tenta resolver o arquivo na compilação; se ele ainda não existir, o onerror troca pela cópia do site atual
 const logo = '/images/logo.svg'
-const logoReserva = 'https://metafit.cc/images/logo.svg'
+const logoReserva = '/images/logo.svg'
 </script>
 
 <style lang="sass" scoped>

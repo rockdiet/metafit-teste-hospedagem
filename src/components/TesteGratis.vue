@@ -74,7 +74,7 @@ import Icone from './Icone.vue'
 // Por enquanto só o visual: o envio valida os campos e ainda não manda os dados para nenhum lugar.
 // Para ligar ao app, troque o conteúdo de enviar() pela chamada de criação de conta.
 const logo = '/images/logo.svg'
-const logoReserva = 'https://metafit.cc/images/logo.svg'
+const logoReserva = '/images/logo.svg'
 
 
 const nome = ref('')

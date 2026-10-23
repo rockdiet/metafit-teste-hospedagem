@@ -33,7 +33,7 @@ import Icone from '../Icone.vue'
 
 // Os apps que o treinador usa hoje ficam espalhados e flutuando; depois todos se juntam no centro e viram a MetaFit (loop de 5 s).
 // Ícones são desenhos próprios e genéricos (planilha, documento, formulário, conversa...), com o nome de cada app embaixo, sem os logotipos oficiais.
-const cdn = 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/imagens/'
+const cdn = '/imagens/'
 const logo = '/images/logo.svg'
 // Logos enviados pelo Maykon (imagem): ficam num bloco branco, como ícone de app; os outros seguem com o desenho
 

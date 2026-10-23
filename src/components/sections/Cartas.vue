@@ -92,9 +92,9 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Icone from '../Icone.vue'
 
 // Cartas que vão passando uma por cima da outra conforme a página rola (seção fixa na tela enquanto o baralho avança)
-// Telas reais do app do aluno (capturas do projeto Metafit Mobile) em WebP leve, 25 a 42 KB cada, na biblioteca de arquivos da UnicPages; se falhar, o onerror cai para as cópias antigas
+// Telas reais do app do aluno (capturas do projeto Metafit Mobile) em WebP leve, 25 a 42 KB cada, servidas pelo próprio site (public/imagens).
 // LP5: todas as telas no modo claro do app
-const cdn = 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/imagens/'
+const cdn = '/imagens/'
 const telas = {
   inicio: cdn + 't0t6taehj2iemwcm-claro-inicio-2.webp',
   treinoLista: cdn + '3cum0ihkxgbjkmnd-claro-treino-lista.webp',
@@ -107,7 +107,7 @@ const telas = {
 }
 // Onde fica a área das fotos dentro da tela do slider (em % da tela), para a linha divisória andar só sobre ela
 const palco = { '--px': '4.32%', '--py': '29.92%', '--pw': '91.35%', '--ph': '55.23%' }
-const remotas = 'https://landipage-metafit.vercel.app/app-screens/'
+const remotas = '/imagens/reserva/'
 
 const cartas = [
   { tipo: 'tela', titulo: 'Dashboard', imagem: telas.inicio, reserva: remotas + 'screen-1.jpeg', alt: 'Tela inicial do app do aluno com pendências, treino do dia, dieta e hidratação', texto: 'Tudo do dia numa tela só: treino, dieta, hidratação e próximos treinos. O aluno abre o app e sabe exatamente o que fazer hoje, sem depender de mensagem sua.' },
@@ -115,7 +115,7 @@ const cartas = [
   { tipo: 'tela', titulo: 'Registro das séries', imagem: telas.treinoSerie, reserva: remotas + 'screen-3.jpeg', alt: 'Série em andamento com carga, repetições e a série anterior para comparar', texto: 'A cada série, o aluno anota a carga e as repetições que fez e marca como concluída, vendo o que fez na última vez para tentar superar. Você acompanha a evolução de carga sem precisar perguntar.' },
   { tipo: 'tela', titulo: 'Tela de dieta', imagem: telas.dieta, reserva: remotas + 'screen-5.jpeg', alt: 'Dieta do aluno com refeições do dia, calorias e macros de cada uma', texto: 'Refeições, macros, substituições e recados do treinador dentro do app. Chega de PDF perdido na conversa do WhatsApp.' },
   { tipo: 'tela', titulo: 'Substituições', imagem: cdn + '8wtzc0j4e4g06ly1-claro-substituicao-almoco.webp', reserva: telas.dieta, alt: 'Opções de troca no almoço: peito de frango por carne moída, tilápia ou peito de peru', texto: 'Enjoou do frango? O aluno toca no alimento e vê as trocas que você já deixou aprovadas, na quantidade certa: patinho, tilápia ou peito de peru. A dieta continua no plano e você não recebe mais aquela mensagem perguntando o que pode comer no lugar.' },
-  { tipo: 'filmado', titulo: 'Biomecânica', imagem: cdn + 'z40dy68o70dzazom-claro-video-supino-3.webp', video: 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/videos/7uyck1b36uynvtrk-supino-inclinado.mp4', poster: cdn + '4hoouve4903mk5wr-supino-poster.webp', alt: 'Vídeo de execução do supino inclinado máquina enviado pelo treinador', texto: 'Cada exercício com vídeo de execução e orientação de técnica. O aluno treina certo mesmo longe de você, e erra muito menos.' },
+  { tipo: 'filmado', titulo: 'Biomecânica', imagem: cdn + 'z40dy68o70dzazom-claro-video-supino-3.webp', video: '/videos/7uyck1b36uynvtrk-supino-inclinado.mp4', poster: cdn + '4hoouve4903mk5wr-supino-poster.webp', alt: 'Vídeo de execução do supino inclinado máquina enviado pelo treinador', texto: 'Cada exercício com vídeo de execução e orientação de técnica. O aluno treina certo mesmo longe de você, e erra muito menos.' },
   { tipo: 'avisos', titulo: 'Notificações', texto: 'Treino liberado, dieta atualizada, pagamento confirmado: o aluno e você são avisados na hora, sem ninguém precisar mandar mensagem.' },
   { tipo: 'slider', titulo: 'Comparativo de fotos', antes: telas.fotosAntes, depois: telas.fotosDepois, alt: 'Slider comparando a foto de antes e a de depois do aluno', texto: 'Fotos de frente, lado e costas lado a lado, com peso e data. O aluno vê o resultado acontecendo, e resultado visível é o que faz ele renovar.' },
   { tipo: 'tela', titulo: 'Histórico', imagem: telas.historico, reserva: remotas + 'screen-4.jpeg', alt: 'Histórico de treinos do aluno em calendário, com treinos e volume do mês', texto: 'Treinos, dietas e manipulados anteriores guardados no perfil do aluno. A evolução completa em segundos, sem procurar em conversa antiga.' }

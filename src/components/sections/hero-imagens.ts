@@ -1,7 +1,7 @@
 // Imagens do topo, usadas pelo Hero e pelo <link rel="preload"> da página inicial (o atleta é a maior imagem da primeira dobra).
 // Ficam na própria hospedagem (pasta public/imagens), no mesmo endereço da página: o celular não precisa abrir outra conexão para baixá-las
 export const cdn = '/imagens/'
-// Atleta em WebP (49 KB) na biblioteca de arquivos da UnicPages
+// Atleta em WebP (49 KB) servido pelo próprio site (public/imagens)
 export const atleta = cdn + 'vyp1rewhexg003c7-atleta.webp'
 // Mesmo desenho em 3 larguras: o navegador escolhe a menor que fica nítida na tela (celular baixa 22 a 34 KB em vez de 49 KB)
 export const atletaSrcset = cdn + 'bm4l4zff0lx4i4gj-atleta-320.webp 320w, ' + cdn + '9rpisj4ubtg9jayc-atleta-460.webp 460w, ' + atleta + ' 622w'

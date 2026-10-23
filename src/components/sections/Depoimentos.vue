@@ -26,7 +26,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const cdn = 'https://unicpages-assets.nyc3.cdn.digitaloceanspaces.com/imagens/'
+const cdn = '/imagens/'
 
 // Dedo na faixa pausa a rolagem no celular; soltou, volta a andar
 const parado = ref(false)
